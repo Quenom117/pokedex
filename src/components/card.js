@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import './card.css';
 import Modal from 'react-bootstrap/Modal';
-import styled from 'styled-components';
-import colors from '../styles/colors';
+import {Tipo} from '../components/tipo';
 
 
 export default function Card(pokemon) {
@@ -12,15 +11,10 @@ export default function Card(pokemon) {
 	const handleShow = () => setShow(true);
 
 	const tipos = pokemon.pokemon.kind.split(';')
-	const paraMaiusculo = (palavra)=>{
-		return palavra.slice(0,1).toUpperCase()+palavra.slice(1,palavra.length)
+	const paraMaiusculo = (palavra) => {
+		return palavra.slice(0, 1).toUpperCase() + palavra.slice(1, palavra.length)
 	}
-	const Tipo = styled.div`
-		background-color:${props => colors[props.cor]};
-		margin: 0.3rem;
-		border-radius: 5px;
-		padding: 0.1rem 0.4rem;
-	`
+	
 
 
 	return (
@@ -36,7 +30,7 @@ export default function Card(pokemon) {
 				</div>
 				<div className='tipos'>
 					{tipos.map((tipo) => (
-						<Tipo cor={tipo}>
+						<Tipo key={`${pokemon.pokemon.number}${tipo}`} cor={tipo}>
 							{tipo}
 						</Tipo>
 					))}
